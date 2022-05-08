@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Maj 2022, 22:12
+-- Czas generowania: 08 Maj 2022, 22:17
 -- Wersja serwera: 10.4.21-MariaDB
 -- Wersja PHP: 8.0.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `znaczniki`
+-- Struktura tabeli dla tabeli `polecenia`
 --
 
-CREATE TABLE `znaczniki` (
+CREATE TABLE `polecenia` (
   `id` int(10) UNSIGNED NOT NULL,
   `nazwa` text COLLATE utf8mb4_polish_ci NOT NULL,
   `wartosc` text COLLATE utf8mb4_polish_ci NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `znaczniki` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `znaczniki`
+-- Zrzut danych tabeli `polecenia`
 --
 
-INSERT INTO `znaczniki` (`id`, `nazwa`, `wartosc`, `znacznik`) VALUES
+INSERT INTO `polecenia` (`id`, `nazwa`, `wartosc`, `znacznik`) VALUES
 (1, 'br', '<br>', '<br>'),
 (2, 'h1', '<h1>', '<h1></h1>'),
 (3, 'h2', '<h2>', '<h2></h2>'),
@@ -56,13 +56,13 @@ INSERT INTO `znaczniki` (`id`, `nazwa`, `wartosc`, `znacznik`) VALUES
 (15, 'p', '<p>', '<p></p>');
 
 --
--- Indeksy dla zrzutów tabel
+-- Indeksy dla zrzutÃ³w tabel
 --
 
 --
--- Indeksy dla tabeli `znaczniki`
+-- Indeksy dla tabeli `polecenia`
 --
-ALTER TABLE `znaczniki`
+ALTER TABLE `polecenia`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -70,9 +70,9 @@ ALTER TABLE `znaczniki`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `znaczniki`
+-- AUTO_INCREMENT dla tabeli `polecenia`
 --
-ALTER TABLE `znaczniki`
+ALTER TABLE `polecenia`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
