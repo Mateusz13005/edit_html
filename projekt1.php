@@ -20,13 +20,13 @@
                 </script>
 <center>
 <?php 
-    $zapytanie = "SELECT * FROM argumenty";
+    $zapytanie = "SELECT * FROM polecenia";
     $query = mysqli_query($connect,$zapytanie);
     $rows = mysqli_fetch_all($query,MYSQLI_ASSOC);
 
     foreach($rows as $w){
     echo<<<END
-        <input class="button-12" type="submit" value="{$w['value']}" id="{$w['name']}" onclick="insert('{$w['arg']}')">
+        <input class="button-12" type="submit" value="{$w['wartosc']}" id="{$w['nazwa']}" onclick="insert('{$w['znacznik']}')">
     END;
     }
 ?>
