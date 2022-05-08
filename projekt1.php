@@ -1,3 +1,6 @@
+<?php 
+    $connect = mysqli_connect('localhost','root','','polecenia');
+?>
 <!DOCTYPE html>
 </html>
 <html lang="pl">
@@ -5,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Generator</title>
 </head>
 <body>
 <script  src=
@@ -14,31 +18,48 @@
 "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
                 crossorigin="anonymous">
                 </script>
-<input type="submit" id="p" value="<p>" onclick="sprawdz('<p></p>')">
-<input type="submit" id="h1" value="<h1>" onclick="sprawdz('<h1></h1>')">
-<input type="submit" id="h2" value="<h2>" onclick="sprawdz('<h2></h2>')">
-<input type="submit" id="form" value="form" style=" margin-left: 516px" onclick="sprawdz_form()">
-<input type="submit" id="function" value="function" onclick="sprawdz_function()"><br>
+<center>
+<?php 
+    $zapytanie = "SELECT * FROM argumenty";
+    $query = mysqli_query($connect,$zapytanie);
+    $rows = mysqli_fetch_all($query,MYSQLI_ASSOC);
+
+    foreach($rows as $w){
+    echo<<<END
+        <input class="button-12" type="submit" value="{$w['value']}" id="{$w['name']}" onclick="insert('{$w['arg']}')">
+    END;
+    }
+?>
+<br>
+                    <input type="submit" class="button-12" style="margin-top: 5px" id="html" value="html"  onclick="sprawdz_html()">
+                    <input type="submit" class="button-12" id="table" value="table" onclick="sprawdz_table()">
+                    <input type="submit" class="button-12" id="form" value="form" onclick="sprawdz_form()">
+                    <input type="submit" class="button-12" id="function" value="function" onclick="sprawdz_function()">
+                    <input type="submit" class="button-12" id="css" value="css" onclick="sprawdz_css()"><br>
+</center>
 <div>
-<textarea id="text" style="width: 60vh; height: 80vh; float:left; margin-top: 20px"></textarea>
-<textarea id="text2" style="width: 40vh; height: 50vh; margin-left: 80px; margin-top: 20px; float:left"></textarea>   
+    <center>
+        <textarea id="text" style="width: 60vh; height: 78vh; resize:none; margin-top: 13px"></textarea>
+        <textarea id="text2" style="width: 60vh; height: 78vh; resize:none; margin-top: 13px"></textarea>   
+    </center>
+
 </div>
 
 
 <script>
-    function sprawdz(a){
+    function insert(arg){
         var curPos = document.getElementById("text").selectionStart;
-                console.log(curPos);
-                let x = $("#text").val();
-                let text_to_insert = a;
-                $("#text").val(
+        console.log(curPos);
+        let x = $("#text").val();
+        let text_to_insert = arg;
+        $("#text").val(
             x.slice(0, curPos) + text_to_insert + x.slice(curPos));
     }
-    function sprawdz_form(){
+function sprawdz_form(){
         var curPos = document.getElementById("text2").selectionStart;
                 console.log(curPos);
                 let x = $("#text2").val();
-                let text_to_insert = '<form>\n  <input type="" id="" value="">\n    <input type="" id="" value="">\n    <input type="" id="" value="">\n    <input type="" id="" value="" onclick="">\n</form>';
+                let text_to_insert = '<form method="" action="">\n  <input type="" id="" value="">\n    <input type="" id="" value="">\n    <input type="" id="" value="">\n    <input type="" id="" value="" onclick="">\n</form>';
                 $("#text2").val(
             x.slice(0, curPos) + text_to_insert + x.slice(curPos));
     }
@@ -47,6 +68,30 @@
                 console.log(curPos);
                 let x = $("#text2").val();
                 let text_to_insert = 'function nazwa_funkcji(parametr 1, parametr 2)\n  {\n     //twój kod\n  };';
+                $("#text2").val(
+            x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+    }
+    function sprawdz_css(){
+        var curPos = document.getElementById("text2").selectionStart;
+                console.log(curPos);
+                let x = $("#text2").val();
+                let text_to_insert = '<link rel="stylesheet" href="arkusz.css">';
+                $("#text2").val(
+            x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+    }
+    function sprawdz_html(){
+        var curPos = document.getElementById("text2").selectionStart;
+                console.log(curPos);
+                let x = $("#text2").val();
+                let text_to_insert = "<!DOCTYPE html>\n<html lang=\"pl\">\n<head>\n<meta charset=\"UTF-8\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Document</title>\n</head>\n<body>\n\n</body>\n</html>";
+                $("#text2").val(
+            x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+    }
+    function sprawdz_table(){
+        var curPos = document.getElementById("text2").selectionStart;
+                console.log(curPos);
+                let x = $("#text2").val();
+                let text_to_insert = '<table>\n <tr>\n      <td> </td>\n      <td> </td>\n </tr>\n <tr>\n      <td> </td>\n      <td> </td>\n </tr>\n</table>';
                 $("#text2").val(
             x.slice(0, curPos) + text_to_insert + x.slice(curPos));
     }
